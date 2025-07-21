@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Lets-Chat</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f1faee;
+      font-family: Arial, sans-serif;
+      color: #1d3557;
+    }
+
+    .login-page {
+      width: 360px;
+      padding: 8% 0 0;
+      margin: auto;
+    }
+
+    .form {
+      position: relative;
+      background: #ffffff;
+      max-width: 360px;
+      margin: 0 auto 100px;
+      padding: 45px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      border-radius: 10px;
+      background-color: #f1faee;
+    }
+
+    .form input {
+      font-family: Arial, sans-serif;
+      outline: 0;
+      background: #ffffff;
+      width: 100%;
+      border: 1px solid #a8dadc;
+      margin: 0 0 15px;
+      padding: 15px;
+      box-sizing: border-box;
+      font-size: 14px;
+      border-radius: 4px;
+      color: #1d3557;
+    }
+
+    .form input:focus {
+      border-color: #457b9d;
+      background-color: #f1faee;
+    }
+
+    .form button {
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      outline: 0;
+      background: #e63946;
+      width: 100%;
+      border: 0;
+      padding: 15px;
+      color: #f1faee;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: 0.3s;
+    }
+
+    .form button:hover, .form button:active {
+      background: #d62839;
+    }
+
+    .message {
+      margin: 15px 0 0;
+      font-size: 14px;
+      color: #457b9d;
+      text-align: center;
+    }
+
+    .message a {
+      color: #e63946;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .message.error {
+      color: #e63946;
+    }
+
+    .message.success {
+      color: green;
+    }
+
+    .social-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .social-buttons div {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .loginBtn {
+      width: 180px;
+      margin: 8px 0;
+      border-radius: 4px;
+      box-shadow: 0 0 5px #1d3557;
+    }
+
+    .form-line {
+      height: 1px;
+      background: #a8dadc;
+      margin: 20px 0;
+    }
+
+    
+  </style>
+</head>
+<body>
+  
+
+  <div class="login-page">
+    <div class="form">
+      <div class="social-buttons">
+        <div><span>Login</span> via</div>
+        <a href="/auth/facebook">
+          <img class="loginBtn" src="img/facebookLoginBtn.png" alt="Sign-In with Facebook">
+        </a>
+        <a href="/auth/twitter">
+          <img class="loginBtn" src="img/twitterLoginBtn.png" alt="Sign-In with Twitter">
+        </a>
+      </div>
+
+      <div class="form-line"></div>
+
+      <div style="margin-top: 18px;">
+       
+
+        <form action="/login" class="login-form" method="post">
+          <input type="text" name="username" placeholder="username"/>
+          <input type="password" name="password" placeholder="password"/>
+          <button type="submit">login</button>
+          <p class="message">Not registered? <a href="#">Create an account</a></p>
+          <% if (errors != null && showRegisterForm == null) { %>
+            <% errors.forEach(function(err){ %>
+              <p class="message error"><%= err %></p>
+            <% }); %>
+          <% } if (success != null && showRegisterForm == null) { %>
+            <p class="message success"><%= success %></p>
+          <% } %>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+  <% if(showRegisterForm != null && showRegisterForm === true) { %>
+  <script>
+    $('.register-form').show(); $('.login-form, .social-buttons, .form-line').hide();
+  </script>
+  <% } %>
+  <script>
+    $('.message a').click(function(){
+      $('form, .social-buttons, .form-line').animate({height: "toggle", opacity: "toggle"}, "slow");
+    });
+  </script>
+</body>
+</html>
