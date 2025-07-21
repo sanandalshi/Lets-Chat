@@ -10,7 +10,7 @@
     "url": "git+https://github.com/sanandalshi/Lets-Chat.git",
     "type": "git"
   },
-  "author": "sanandalshi"
+  "author": "sanandalshi",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sanandalshi/Lets-Chat/issues"
